@@ -82,7 +82,7 @@ export default function MyOrdersPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-teal-50/30 to-cyan-50 py-20 px-4">
+	<div className="min-h-screen bg-gradient-to-b from-primary-50 via-accent-light/40 to-white py-20 px-4">
       <div className="container mx-auto max-w-6xl">
         {/* Header Section */}
         <div className="mb-16">

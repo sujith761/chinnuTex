@@ -8,13 +8,18 @@ export default function ChatBot() {
   const [sessionId, setSessionId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [quickReplies, setQuickReplies] = useState([]);
+  const [unreadCount, setUnreadCount] = useState(0);
   const messagesEndRef = useRef(null);
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
-  // Initialize chatbot session on first open
+  // Initialize chatbot session on first open and reset unread count
   useEffect(() => {
-    if (isOpen && !sessionId) {
-      initiateChatbot();
+    if (isOpen) {
+      if (!sessionId) {
+        initiateChatbot();
+      }
+      // Clear unread count when chat is opened
+      setUnreadCount(0);
     }
   }, [isOpen]);
 
@@ -64,6 +69,10 @@ export default function ChatBot() {
     if (!userMessage || !sessionId) return;
 
     setMessages(prev => [...prev, { sender: 'user', text: userMessage }]);
+    // Increment unread count only if chat is closed
+    if (!isOpen) {
+      setUnreadCount(prev => prev + 1);
+    }
     setIsLoading(true);
     setQuickReplies([]); // Clear quick replies when user sends message
 
@@ -156,17 +165,29 @@ export default function ChatBot() {
         aria-label="Toggle chat"
       >
         {isOpen ? (
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         ) : (
-          <div className="chat-icon-wrapper">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+          <div className="chatbot-toggle-icon">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm-0-3H6V6h12v2z" />
             </svg>
-            {messages.length > 0 && (
-              <span className="notification-badge">{messages.length}</span>
+            {unreadCount > 0 && (
+              <span className="notification-badge">{unreadCount}</span>
             )}
           </div>
         )}

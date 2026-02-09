@@ -6,6 +6,21 @@ export default function WeavingPage() {
   const [clothTypes, setClothTypes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [quantities, setQuantities] = useState({});
+
+  const incrementQuantity = (slug) => {
+    setQuantities(prev => ({
+      ...prev,
+      [slug]: (prev[slug] || 0) + 1
+    }));
+  };
+
+  const decrementQuantity = (slug) => {
+    setQuantities(prev => ({
+      ...prev,
+      [slug]: Math.max(0, (prev[slug] || 0) - 1)
+    }));
+  };
 
   const clothImages = {
     'cotton': 'https://images.unsplash.com/photo-1599122762299-5e85c0a36c0c?w=600&h=400&fit=crop',
@@ -48,86 +63,170 @@ export default function WeavingPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-emerald-50/30">
-      {/* Hero Section */}
-      <div className="py-20 px-4 bg-gradient-to-r from-emerald-900 to-emerald-800 text-white">
-        <div className="container mx-auto text-center max-w-4xl">
-          <h1 className="text-3xl font-bold mb-4">
-            Our Services
-          </h1>
-          <p className="text-base text-emerald-100">
-            Professional weaving solutions tailored to your fabric needs. Excellence in every weave.
-          </p>
+    <div className="min-h-screen bg-stone-50 font-serif selection:bg-emerald-200">
+      {/* Hero Section with Texture */}
+      <div className="relative bg-emerald-900 border-b-8 border-yellow-600/30">
+        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/woven.png')]"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/80 to-emerald-900/80"></div>
+
+        <div className="container mx-auto px-4 py-24 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-800/50 border border-emerald-700/50 text-emerald-200 text-sm font-medium mb-6">
+                <span className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></span>
+                Master Craftsmanship
+              </div>
+              <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                The Art of <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-amber-500">Fine Weaving</span>
+              </h1>
+              <p className="text-xl text-emerald-100/80 mb-8 max-w-xl font-light italic">
+                Where tradition meets technology. Explore our exquisite collection of premium woven fabrics, crafted for perfection.
+              </p>
+              <a href="#collection" className="inline-block px-8 py-4 bg-yellow-600 hover:bg-yellow-500 text-emerald-950 font-bold rounded-sm transition-colors shadow-lg shadow-yellow-900/20">
+                View Components
+              </a>
+            </div>
+            <div className="hidden lg:block relative">
+              <div className="absolute inset-0 bg-yellow-500 blur-[100px] opacity-20"></div>
+              <img
+                src="https://images.unsplash.com/photo-1520188741369-0df8e76cfaee?w=800&h=1000&fit=crop"
+                alt="Fabric texture"
+                className="relative rounded-t-full border-4 border-emerald-800/50 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-700 object-cover h-[500px] w-full"
+              />
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Services Section */}
-      <div className="container mx-auto px-4 py-20">
-        {/* Weaving Subheading */}
-        <div className="max-w-7xl mx-auto mb-12">
-          <h2 className="text-xl font-bold text-emerald-900 mb-8">Weaving Services</h2>
-          <p className="text-sm text-emerald-700/80 mb-8 leading-relaxed">
-            Our state-of-the-art weaving facility features high-speed automated looms capable of producing various fabric 
-            types and patterns. Quality control is maintained at every stage to ensure superior fabric quality.
+      {/* Quality Indicators */}
+      <div className="bg-stone-100 py-12 border-b border-stone-200">
+        <div className="container mx-auto px-4 flex flex-wrap justify-center gap-8 lg:gap-16">
+          {['High Thread Count', 'Color Fastness', 'Premium Blends', 'Eco-Conscious'].map((feature, i) => (
+            <div key={i} className="flex items-center gap-3 text-emerald-900/70 font-medium">
+              <svg className="w-5 h-5 text-yellow-600" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+              <span>{feature}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Main Collection */}
+      <div id="collection" className="container mx-auto px-4 py-24">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-emerald-950 mb-4">Fabric Collection</h2>
+          <div className="w-24 h-1 bg-yellow-600 mx-auto rounded-full"></div>
+          <p className="mt-4 text-emerald-800/60 max-w-2xl mx-auto">
+            Discover the finest textures and blends. Our fabrics are woven with precision to ensure durability and elegance.
           </p>
         </div>
 
-        {/* Cloth Types Grid */}
         {loading ? (
           <div className="flex justify-center items-center py-20">
-            <div className="text-emerald-600">Loading pricing data...</div>
+            <div className="text-emerald-800 font-serif text-xl animate-pulse">Weaving collection data...</div>
           </div>
         ) : error ? (
-          <div className="text-center text-red-600 py-4">⚠️ {error}</div>
+          <div className="text-center text-red-600 py-4 font-medium">Unable to load collection: {error}</div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
             {clothTypes.map((cloth, index) => (
-              <div 
-                key={index} 
-                className="group bg-white border border-emerald-100 rounded-xl overflow-hidden hover:shadow-2xl hover:border-emerald-300 transition-all duration-300 flex flex-col"
+              <div
+                key={index}
+                className="group bg-white rounded-sm shadow-md hover:shadow-2xl transition-all duration-300 border border-stone-200 overflow-hidden flex flex-col"
               >
-                {/* Image Container */}
-                <div className="relative h-56 overflow-hidden bg-gradient-to-b from-emerald-100 to-emerald-50">
-                  <div 
-                    className="h-full w-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300" 
-                    style={{ backgroundImage: `url(${clothImages[cloth.slug]})` }} 
+                {/* Image Area */}
+                <div className="relative h-72 overflow-hidden">
+                  <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 z-10 transition-colors duration-300"></div>
+                  <img
+                    src={clothImages[cloth.slug]}
+                    alt={cloth.fabricType}
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-4 right-4 z-20 bg-white/95 px-4 py-2 shadow-sm border-l-4 border-yellow-500">
+                    <p className="text-xs uppercase tracking-wider text-emerald-900 font-bold">In Stock</p>
+                  </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold text-emerald-900 mb-2">{cloth.fabricType}</h3>
-                  <p className="text-emerald-600 font-semibold mb-3">₹{cloth.pricePerMetre}/metre</p>
-                  <p className="text-emerald-700/80 mb-4 leading-relaxed text-sm flex-grow">
-                    Professional weaving service specifically designed for {cloth.fabricType.toLowerCase()}. Get optimal results with our specialized automated loom technology.
+                {/* Content Area */}
+                <div className="p-8 flex flex-col flex-grow bg-[url('https://www.transparenttextures.com/patterns/cardboard.png')]">
+                  <h3 className="text-2xl font-bold text-emerald-950 mb-2 font-serif">
+                    {cloth.fabricType} Blend
+                  </h3>
+                  <p className="text-sm text-emerald-800/60 mb-6 italic border-b border-stone-200 pb-4">
+                    Premium grade woven fabric, suitable for high-end garments and textiles.
                   </p>
 
-                  {/* CTA Button */}
-                  <Link 
-                    to={`/products/weaving/${cloth.slug}`} 
-                    className="inline-flex items-center justify-center gap-2 bg-emerald-600 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-emerald-700 transition shadow-md text-sm w-full"
-                  >
-                    <span>View Details</span>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </Link>
+                  {/* Price Tag */}
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="text-stone-500 text-sm">Price per metre</span>
+                    <span className="text-3xl font-bold text-emerald-900">₹{cloth.pricePerMetre}</span>
+                  </div>
+
+                  {/* Controls */}
+                  <div className="mt-auto space-y-4">
+                    {(quantities[cloth.slug] || 0) > 0 && (
+                      <div className="flex items-center justify-between bg-emerald-50 px-4 py-2 rounded-sm border border-emerald-100">
+                        <span className="text-sm font-semibold text-emerald-800">Subtotal</span>
+                        <span className="text-lg font-bold text-emerald-900">₹{(cloth.pricePerMetre * quantities[cloth.slug]).toFixed(2)}</span>
+                      </div>
+                    )}
+
+                    {(quantities[cloth.slug] || 0) === 0 ? (
+                      <button
+                        onClick={() => incrementQuantity(cloth.slug)}
+                        className="w-full py-4 bg-emerald-900 text-yellow-50 hover:bg-emerald-800 transition-colors uppercase tracking-widest text-xs font-bold"
+                      >
+                        Add to Selection
+                      </button>
+                    ) : (
+                      <div className="space-y-3 animate-in fade-in slide-in-from-bottom-2">
+                        <div className="flex items-center justify-center gap-4">
+                          <button
+                            onClick={() => decrementQuantity(cloth.slug)}
+                            className="w-10 h-10 border border-stone-300 rounded-full hover:bg-stone-100 flex items-center justify-center text-stone-600"
+                          >
+                            -
+                          </button>
+                          <span className="font-bold text-xl text-emerald-950 w-16 text-center">{quantities[cloth.slug]}m</span>
+                          <button
+                            onClick={() => incrementQuantity(cloth.slug)}
+                            className="w-10 h-10 bg-emerald-900 text-white rounded-full hover:bg-emerald-800 flex items-center justify-center"
+                          >
+                            +
+                          </button>
+                        </div>
+                        <Link
+                          to="/booking"
+                          state={{
+                            type: 'product',
+                            category: 'weaving',
+                            item: cloth.fabricType,
+                            itemSlug: cloth.slug,
+                            price: cloth.pricePerMetre,
+                            unit: 'metre',
+                            quantity: quantities[cloth.slug]
+                          }}
+                          className="block w-full py-3 bg-yellow-600 text-emerald-950 text-center font-bold text-sm uppercase hover:bg-yellow-500 transition-colors"
+                        >
+                          Confirm Order
+                        </Link>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         )}
+      </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-8 text-center max-w-4xl mx-auto bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-2xl p-12 shadow-xl">
-          <h3 className="text-2xl font-bold mb-3">Ready to Get Started?</h3>
-          <p className="text-sm text-emerald-100 mb-8">Book your weaving service today and experience excellence</p>
-          <Link 
-            to="/booking" 
-            className="inline-block bg-white text-emerald-700 px-10 py-3.5 rounded-lg font-semibold hover:bg-emerald-50 transition shadow-lg hover:shadow-xl"
-          >
-            Book Service Now
+      {/* Footer Banner */}
+      <div className="bg-emerald-950 py-20 text-center text-white relative overflow-hidden">
+        <div className="container mx-auto px-4 relative z-10">
+          <h2 className="text-3xl font-serif italic mb-6">"Quality is not an act, it is a habit."</h2>
+          <p className="text-emerald-400 mb-8 max-w-lg mx-auto">Experience the difference of truly premium weaving. Contact us for bulk orders and custom specifications.</p>
+          <Link to="/contact" className="inline-block border border-yellow-600 text-yellow-500 px-8 py-3 hover:bg-yellow-600 hover:text-emerald-950 transition-colors duration-300 uppercase tracking-widest text-sm font-bold">
+            Contact Sales
           </Link>
         </div>
       </div>

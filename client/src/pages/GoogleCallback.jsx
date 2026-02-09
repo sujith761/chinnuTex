@@ -29,7 +29,7 @@ export default function GoogleCallback() {
   }, [location.search, navigate]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+	<div className="min-h-screen bg-gradient-to-b from-primary-50 via-accent-light/40 to-white flex items-center justify-center">
       <div className="text-center text-gray-600">Signing you in with Google…</div>
     </div>
   );

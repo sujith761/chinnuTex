@@ -28,6 +28,7 @@ export default function BookingPage() {
       const category = selectedItem.category || 'sizing';
       const processType = category === 'sizing' ? 'sizing' : 'weaving';
       const unit = selectedItem.unit || (category === 'sizing' ? 'kg' : 'metre');
+      const quantity = selectedItem.quantity || 1;
       
       setBookingData(prev => ({
         ...prev,
@@ -35,6 +36,7 @@ export default function BookingPage() {
         fabricType: selectedItem.itemSlug || '',
         serviceType: selectedItem.itemSlug || '',
         costPerMeter: selectedItem.price || 0,
+        quantity: quantity,
         unit: unit,
         notes: `Selected ${selectedItem.type === 'product' ? 'Product' : 'Service'}: ${selectedItem.item}`
       }));
@@ -42,7 +44,7 @@ export default function BookingPage() {
   }, [selectedItem]);
 
   // Calculate total order amount
-  const total = (bookingData.costPerMeter * bookingData.quantity) / 100;
+  const total = bookingData.costPerMeter * bookingData.quantity;
 
   const handleCancelBooking = async () => {
     if (!window.confirm('Are you sure you want to cancel this booking?')) return;
@@ -256,7 +258,7 @@ export default function BookingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/50 to-teal-50 py-16 px-4">
+	<div className="min-h-screen bg-gradient-to-b from-primary-50 via-accent-light/40 to-white py-16 px-4">
       <div className="container mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -331,13 +333,23 @@ export default function BookingPage() {
                     <span className="text-lg font-bold text-teal-600">₹{selectedItem.price}/{bookingData.unit}</span>
                   </div>
                 )}
+                {bookingData.quantity && (
+                  <div className="flex justify-between items-center pb-4 border-b border-slate-200">
+                    <span className="text-slate-600 font-medium">Quantity:</span>
+                    <span className="text-lg font-bold text-slate-700">{bookingData.quantity} {bookingData.unit}</span>
+                  </div>
+                )}
                 <div className="flex justify-between items-center pb-4 border-b border-slate-200">
                   <span className="text-slate-600 font-medium">Service Type:</span>
                   <span className="text-lg font-bold text-slate-700">{selectedItem?.category === 'sizing' ? 'Sizing' : 'Weaving'}</span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center pb-4 border-b border-slate-200">
                   <span className="text-slate-600 font-medium">Category:</span>
                   <span className="text-lg font-bold text-slate-700">{selectedItem?.type === 'product' ? 'Product' : 'Service'}</span>
+                </div>
+                <div className="flex justify-between items-center pt-4 border-t-2 border-teal-300">
+                  <span className="text-slate-700 font-bold text-xl">Total Amount:</span>
+                  <span className="text-2xl font-bold text-teal-600">₹{total.toFixed(2)}</span>
                 </div>
               </div>
 

@@ -194,39 +194,38 @@ export default function CareersPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-zinc-50">
+    <div className="min-h-screen bg-slate-50 font-sans selection:bg-indigo-500 selection:text-white">
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-slate-600 via-gray-600 to-zinc-600 py-20 px-4">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '40px 40px'
-          }}></div>
+      <div className="relative overflow-hidden bg-slate-900 text-white py-24 lg:py-32">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 z-0"></div>
+        {/* Animated Blobs */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-600/20 rounded-full blur-[100px] animate-pulse"></div>
+          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-sky-600/20 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '2s' }}></div>
         </div>
-        <div className="container mx-auto text-center relative z-10">
-          <div className="inline-block mb-6">
-            <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto shadow-lg">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </div>
+
+        <div className="container mx-auto text-center relative z-10 px-4">
+          <div className="inline-flex items-center justify-center p-4 bg-white/10 backdrop-blur-md border border-white/10 rounded-full shadow-2xl mb-8">
+            <svg className="w-10 h-10 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-            Join Our Growing Team
+          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight">
+            Join Our <span className="text-indigo-400">Growing Team</span>
           </h1>
-          <p className="text-lg text-white/80 max-w-2xl mx-auto mb-6">
-            Shape the future of textile processing with Chinnu Tex
+          <p className="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
+            Shape the future of textile processing with Chinnu Tex.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 text-white/70 text-sm">
-            <div className="flex items-center gap-2">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex flex-wrap justify-center gap-6 mt-8 text-slate-300 font-medium">
+            <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/10 backdrop-blur-sm">
+              <svg className="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
               <span>Erode, Tamil Nadu</span>
             </div>
-            <div className="flex items-center gap-2">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/10 backdrop-blur-sm">
+              <svg className="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
               </svg>
               <span>{jobs.length} Open Positions</span>
@@ -236,20 +235,20 @@ export default function CareersPage() {
       </div>
 
       {/* Benefits Section */}
-      <div className="py-16 bg-white/50 backdrop-blur-sm">
+      <div className="py-20 bg-white relative z-20 -mt-10 rounded-t-[3rem]">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-3">Why Join Chinnu Tex?</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">We offer more than just a job - we provide a career path with growth opportunities</p>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">Why Join Chinnu Tex?</h2>
+            <p className="text-slate-500 max-w-2xl mx-auto text-lg">We offer more than just a job - we provide a career path with growth opportunities</p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {benefits.map((benefit, index) => (
-              <div key={index} className="bg-white p-5 rounded-xl border border-gray-200 hover:shadow-lg transition-all hover:-translate-y-1">
-                <div className="w-11 h-11 bg-gradient-to-br from-slate-500 to-gray-600 rounded-lg flex items-center justify-center text-white mb-3">
+              <div key={index} className="group p-8 bg-slate-50 rounded-2xl border border-slate-100 hover:border-indigo-100 hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300">
+                <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center text-indigo-600 mb-6 shadow-sm group-hover:scale-110 transition-transform">
                   {benefit.icon}
                 </div>
-                <h3 className="text-base font-bold text-gray-800 mb-2">{benefit.title}</h3>
-                <p className="text-gray-600 text-sm">{benefit.description}</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">{benefit.title}</h3>
+                <p className="text-slate-600 leading-relaxed">{benefit.description}</p>
               </div>
             ))}
           </div>
@@ -257,59 +256,58 @@ export default function CareersPage() {
       </div>
 
       {/* Job Listings */}
-      <div className="py-16 px-4 bg-gradient-to-b from-white/50 to-slate-50">
+      <div className="py-20 px-4 bg-slate-50">
         <div className="container mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-3">Open Positions</h2>
-            <p className="text-gray-600">Find the perfect role that matches your skills and passion</p>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">Open Positions</h2>
+            <p className="text-slate-500 text-lg">Find the perfect role that matches your skills and passion</p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-5 max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-6 max-w-7xl mx-auto">
             {jobs.map((job) => (
-              <div 
-                key={job.id} 
-                className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer"
+              <div
+                key={job.id}
+                className="group bg-white rounded-2xl p-8 hover:shadow-xl hover:shadow-indigo-500/5 transition-all border border-slate-100 hover:border-indigo-200 cursor-pointer relative overflow-hidden"
                 onClick={() => setSelectedJob(job)}
               >
-                <div className="p-5">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex-1">
-                      <h3 className="text-lg font-bold text-gray-800 mb-2">{job.title}</h3>
-                      <p className="text-gray-600 text-sm mb-2">{job.description}</p>
-                    </div>
-                    <span className="px-2.5 py-1 bg-green-50 text-green-700 border border-green-200 rounded-full text-xs font-medium whitespace-nowrap ml-2">
-                      {job.type}
-                    </span>
+                <div className="absolute top-0 left-0 w-1 h-full bg-indigo-500 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors">{job.title}</h3>
+                    <p className="text-slate-600 text-sm mb-4 line-clamp-2">{job.description}</p>
                   </div>
+                  <span className="px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-full text-xs font-bold uppercase tracking-wider ml-4">
+                    {job.type}
+                  </span>
+                </div>
 
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="px-2.5 py-1 bg-slate-100 text-slate-700 rounded-lg text-xs font-medium flex items-center gap-1">
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                      </svg>
-                      {job.department}
-                    </span>
-                    <span className="px-2.5 py-1 bg-gray-100 text-gray-700 rounded-lg text-xs font-medium flex items-center gap-1">
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                      {job.experience}
-                    </span>
-                    <span className="px-2.5 py-1 bg-zinc-100 text-zinc-700 rounded-lg text-xs font-medium flex items-center gap-1">
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      {job.location}
-                    </span>
-                  </div>
-
-                  <button className="w-full py-2.5 bg-gradient-to-r from-slate-600 to-gray-600 text-white rounded-lg font-medium hover:from-slate-700 hover:to-gray-700 transition-all flex items-center justify-center gap-2">
-                    View Details
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <div className="flex flex-wrap gap-3 mb-6">
+                  <span className="px-3 py-1.5 bg-slate-50 text-slate-600 rounded-lg text-xs font-medium flex items-center gap-1.5">
+                    <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                     </svg>
-                  </button>
+                    {job.department}
+                  </span>
+                  <span className="px-3 py-1.5 bg-slate-50 text-slate-600 rounded-lg text-xs font-medium flex items-center gap-1.5">
+                    <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    {job.experience}
+                  </span>
+                  <span className="px-3 py-1.5 bg-slate-50 text-slate-600 rounded-lg text-xs font-medium flex items-center gap-1.5">
+                    <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    {job.location}
+                  </span>
+                </div>
+
+                <div className="w-full py-3 border border-slate-200 text-slate-600 rounded-xl font-medium group-hover:border-indigo-600 group-hover:text-indigo-600 transition-all flex items-center justify-center gap-2 group-hover:bg-indigo-50">
+                  <span>View Details</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </div>
               </div>
             ))}
@@ -318,119 +316,124 @@ export default function CareersPage() {
       </div>
 
       {/* CTA Section */}
-      <div className="py-14 bg-gradient-to-r from-slate-600 via-gray-600 to-zinc-600">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Ready to Make an Impact?</h2>
-          <p className="text-base text-white/80 mb-6 max-w-2xl mx-auto">
+      <div className="py-20 bg-slate-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-l from-indigo-900/50 to-transparent"></div>
+
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tight">Ready to Make an Impact?</h2>
+          <p className="text-lg text-slate-300 mb-10 max-w-2xl mx-auto">
             Don't see the perfect role? Send us your resume anyway. We're always looking for talented individuals.
           </p>
-          <a 
-            href="mailto:careers@chinnutex.com" 
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-700 rounded-lg font-semibold hover:shadow-lg transition-all hover:-translate-y-0.5"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-            Send Your Resume
-          </a>
-          <p className="text-white/60 mt-3 text-sm">careers@chinnutex.com</p>
+          <div className="flex flex-col items-center gap-3">
+            <a
+              href="mailto:careers@chinnutex.com"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-indigo-600 text-white rounded-xl font-bold text-lg hover:bg-indigo-500 hover:shadow-lg hover:shadow-indigo-500/25 transition-all hover:-translate-y-1"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              Send Your Resume
+            </a>
+            <p className="text-slate-500 text-sm font-medium">or email careers@chinnutex.com</p>
+          </div>
         </div>
       </div>
 
       {/* Job Detail Modal */}
       {selectedJob && (
-        <div 
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        <div
+          className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 transition-all duration-300"
           onClick={() => setSelectedJob(null)}
         >
-          <div 
-            className="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+          <div
+            className="bg-white rounded-[2rem] max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-in fade-in zoom-in duration-300"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="sticky top-0 bg-gradient-to-r from-slate-600 to-gray-600 p-5 text-white z-10">
-              <div className="flex items-start justify-between">
-                <div>
-                  <h2 className="text-xl font-bold mb-2">{selectedJob.title}</h2>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-2.5 py-1 bg-white/15 backdrop-blur-sm rounded-lg text-sm font-medium">
-                      {selectedJob.department}
-                    </span>
-                    <span className="px-2.5 py-1 bg-white/15 backdrop-blur-sm rounded-lg text-sm font-medium">
-                      {selectedJob.type}
-                    </span>
-                    <span className="px-2.5 py-1 bg-white/15 backdrop-blur-sm rounded-lg text-sm font-medium">
-                      {selectedJob.experience}
-                    </span>
-                  </div>
+            <div className="sticky top-0 bg-white/95 backdrop-blur-md border-b border-slate-100 p-6 z-10 flex items-start justify-between">
+              <div>
+                <h2 className="text-2xl font-bold text-slate-900 mb-3">{selectedJob.title}</h2>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold uppercase tracking-wider">
+                    {selectedJob.department}
+                  </span>
+                  <span className="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold uppercase tracking-wider">
+                    {selectedJob.type}
+                  </span>
+                  <span className="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold uppercase tracking-wider">
+                    {selectedJob.experience}
+                  </span>
                 </div>
-                <button 
-                  onClick={() => setSelectedJob(null)}
-                  className="w-9 h-9 bg-white/15 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-white/25 transition-all"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
               </div>
+              <button
+                onClick={() => setSelectedJob(null)}
+                className="w-10 h-10 bg-slate-100 text-slate-500 rounded-full flex items-center justify-center hover:bg-slate-200 transition-colors"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
             </div>
 
-            <div className="p-6">
-              <div className="mb-6">
-                <div className="flex items-center gap-2 text-gray-600 mb-3">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="p-8">
+              <div className="mb-8">
+                <div className="flex items-center gap-2 text-slate-500 mb-4 font-medium">
+                  <svg className="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <span className="text-sm">{selectedJob.location}</span>
+                  <span>{selectedJob.location}</span>
                 </div>
-                <p className="text-gray-700">{selectedJob.description}</p>
+                <p className="text-slate-700 text-lg leading-relaxed">{selectedJob.description}</p>
               </div>
 
-              <div className="mb-6">
-                <h3 className="text-lg font-bold text-gray-800 mb-3">Key Responsibilities</h3>
-                <ul className="space-y-2">
-                  {selectedJob.responsibilities.map((resp, index) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <div className="w-5 h-5 bg-slate-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <svg className="w-3 h-3 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                      <span className="text-gray-700 text-sm">{resp}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h3 className="text-sm font-bold text-indigo-600 uppercase tracking-widest mb-4">Key Responsibilities</h3>
+                  <ul className="space-y-3">
+                    {selectedJob.responsibilities.map((resp, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <div className="w-5 h-5 bg-indigo-50 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <svg className="w-3 h-3 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <span className="text-slate-700 text-sm leading-relaxed">{resp}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-indigo-600 uppercase tracking-widest mb-4">Requirements</h3>
+                  <ul className="space-y-3">
+                    {selectedJob.requirements.map((req, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <div className="w-5 h-5 bg-indigo-50 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <svg className="w-3 h-3 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <span className="text-slate-700 text-sm leading-relaxed">{req}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
 
-              <div className="mb-6">
-                <h3 className="text-lg font-bold text-gray-800 mb-3">Requirements</h3>
-                <ul className="space-y-2">
-                  {selectedJob.requirements.map((req, index) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <div className="w-5 h-5 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <svg className="w-3 h-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
-                      <span className="text-gray-700 text-sm">{req}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
 
-              <div className="flex gap-3">
-                <a 
-                  href="mailto:careers@chinnutex.com?subject=Application for {selectedJob.title}"
-                  className="flex-1 py-3 bg-gradient-to-r from-slate-600 to-gray-600 text-white rounded-lg font-semibold text-center hover:from-slate-700 hover:to-gray-700 transition-all flex items-center justify-center gap-2"
+              <div className="flex gap-4 pt-6 border-t border-slate-100">
+                <a
+                  href={`mailto:careers@chinnutex.com?subject=Application for ${selectedJob.title}`}
+                  className="flex-1 py-4 bg-indigo-600 text-white rounded-xl font-bold text-center hover:bg-indigo-500 hover:shadow-lg hover:shadow-indigo-500/20 transition-all flex items-center justify-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                   Apply Now
                 </a>
-                <button 
+                <button
                   onClick={() => setSelectedJob(null)}
-                  className="px-5 py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-all"
+                  className="px-8 py-4 bg-slate-100 text-slate-600 rounded-xl font-bold hover:bg-slate-200 transition-all"
                 >
                   Close
                 </button>

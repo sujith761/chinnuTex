@@ -2,14 +2,14 @@ import { Link } from 'react-router-dom';
 
 export default function SavingsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-lime-100">
+	<div className="min-h-screen bg-gradient-to-b from-primary-50 via-accent-light/40 to-white">
       {/* Hero Section */}
       <div className="relative overflow-hidden py-20 px-4">
         <div className="absolute inset-0 bg-gradient-to-r from-amber-600 to-yellow-600 opacity-10"></div>
         <div className="container mx-auto relative z-10">
           {/* Navigation */}
           <div className="flex items-center justify-between mb-12 max-w-5xl mx-auto">
-            <Link to="/why-jmb" className="flex items-center gap-2 text-amber-600 font-semibold hover:gap-3 transition-all group">
+            <Link to="/why-chinnu-tex" className="flex items-center gap-2 text-amber-600 font-semibold hover:gap-3 transition-all group">
               <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>

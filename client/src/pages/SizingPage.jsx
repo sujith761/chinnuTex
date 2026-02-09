@@ -6,6 +6,21 @@ export default function SizingPage() {
   const [yarnTypes, setYarnTypes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [quantities, setQuantities] = useState({});
+
+  const incrementQuantity = (slug) => {
+    setQuantities(prev => ({
+      ...prev,
+      [slug]: (prev[slug] || 0) + 1
+    }));
+  };
+
+  const decrementQuantity = (slug) => {
+    setQuantities(prev => ({
+      ...prev,
+      [slug]: Math.max(0, (prev[slug] || 0) - 1)
+    }));
+  };
 
   const yarnImages = {
     'cotton': 'https://images.unsplash.com/photo-1599122762299-5e85c0a36c0c?w=600&h=400&fit=crop',
@@ -46,97 +61,214 @@ export default function SizingPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-50 via-white to-sky-50/30">
-      {/* Hero Section */}
-      <div className="py-20 px-4 bg-gradient-to-r from-sky-900 to-sky-800 text-white">
-        <div className="container mx-auto text-center max-w-4xl">
-          <h1 className="text-5xl font-bold mb-4">
-            Sizing Products
+    <div className="min-h-screen bg-slate-50 font-sans selection:bg-sky-200">
+      {/* Dynamic Liquid Background Hero */}
+      <div className="relative overflow-hidden bg-slate-900 text-white py-32 lg:py-48">
+        {/* Abstract Background Shapes */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+          <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[70%] bg-sky-600/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-[40%] -right-[10%] w-[40%] h-[60%] bg-blue-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute bottom-[-20%] left-[20%] w-[60%] h-[50%] bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10 text-center">
+          <div className="inline-block mb-6 px-4 py-1.5 rounded-full border border-sky-400/30 bg-sky-500/10 backdrop-blur-sm">
+             <span className="text-sky-300 text-sm font-semibold tracking-widest uppercase">Industrial Grade Strength</span>
+          </div>
+          <h1 className="text-5xl lg:text-7xl font-extrabold mb-8 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-sky-100 to-sky-300 drop-shadow-sm">
+            Advanced Sizing Solutions
           </h1>
-          <p className="text-xl text-sky-100">
-            Professional sizing products for superior yarn strengthening. Excellence in every application.
+          <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed font-light">
+            Engineered coatings for superior yarn performance. Experience the pinnacle of smooth, abrasion-resistant textile processing.
           </p>
+          
+          <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
+             <a href="#products" className="px-8 py-4 bg-sky-600 hover:bg-sky-500 text-white rounded-full font-semibold transition-all shadow-[0_0_20px_rgba(2,132,199,0.3)] hover:shadow-[0_0_30px_rgba(2,132,199,0.5)] transform hover:-translate-y-1">
+               Explore Products
+             </a>
+             <Link to="/contact" className="px-8 py-4 bg-transparent border border-white/20 hover:bg-white/10 text-white rounded-full font-semibold transition-all backdrop-blur-sm">
+               Contact Expert
+             </Link>
+          </div>
         </div>
       </div>
 
-      {/* Products Section */}
-      <div className="container mx-auto px-4 py-20">
-        {/* Sizing Subheading */}
-        <div className="max-w-7xl mx-auto mb-12">
-          <h2 className="text-3xl font-bold text-sky-900 mb-8">Warp Sizing Products</h2>
-          <p className="text-lg text-sky-700/80 mb-8 leading-relaxed">
-            Our advanced sizing process applies protective coatings to warp yarns, improving their strength, smoothness, 
-            and abrasion resistance before weaving. Get optimal results with our specialized sizing solutions for each yarn type.
+      {/* Stats / Value Prop Section */}
+      <div className="py-16 bg-white border-b border-slate-100">
+        <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {[
+                    { title: "20% Higher Efficiency", desc: "Reduce downtime with stronger yarn", icon: (
+                        <svg className="w-8 h-8 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    )},
+                    { title: "Zero Abrasion", desc: "Perfectly smooth coating application", icon: (
+                        <svg className="w-8 h-8 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    )},
+                    { title: "Eco-Friendly", desc: "Sustainable chemical processes", icon: (
+                        <svg className="w-8 h-8 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    )}
+                ].map((stat, i) => (
+                    <div key={i} className="flex items-start space-x-4 p-6 rounded-2xl hover:bg-slate-50 transition-colors duration-300">
+                        <div className="flex-shrink-0 p-3 bg-sky-50 rounded-xl">
+                            {stat.icon}
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-bold text-slate-900 mb-1">{stat.title}</h3>
+                            <p className="text-slate-500 text-sm leading-relaxed">{stat.desc}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+      </div>
+
+      {/* Main Content Area */}
+      <div id="products" className="container mx-auto px-4 py-24">
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <h2 className="text-4xl font-bold text-slate-900 mb-6">Premium Sizing Catalog</h2>
+          <p className="text-lg text-slate-600 leading-relaxed">
+            Select from our specialized range of sizing formulas, each tailored for specific yarn characteristics to ensure weaving perfection.
           </p>
         </div>
 
-        {/* Yarn Types Grid */}
+        {/* Products Grid */}
         {loading ? (
-          <div className="flex justify-center items-center py-20">
-            <div className="text-sky-600">Loading pricing data...</div>
+          <div className="flex flex-col justify-center items-center py-32">
+            <div className="w-16 h-16 border-4 border-sky-200 border-t-sky-600 rounded-full animate-spin mb-4"></div>
+            <p className="text-sky-600 font-medium animate-pulse">Loading catalog...</p>
           </div>
         ) : error ? (
-          <div className="text-center text-red-600 py-4">⚠️ {error}</div>
+          <div className="max-w-md mx-auto p-6 bg-red-50 rounded-xl border border-red-100 text-center">
+            <div className="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+            </div>
+            <h3 className="text-lg font-bold text-red-800 mb-2">Connection Error</h3>
+            <p className="text-red-600 mb-4">{error}</p>
+            <button onClick={() => window.location.reload()} className="text-sm font-semibold text-red-700 underline hover:text-red-800">Try Again</button>
+          </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {yarnTypes.map((yarn, index) => (
               <div 
                 key={index} 
-                className="group bg-white border border-sky-100 rounded-xl overflow-hidden hover:shadow-2xl hover:border-sky-300 transition-all duration-300 flex flex-col"
+                className="group relative bg-white rounded-3xl overflow-hidden border border-slate-200 hover:border-sky-300 transition-all duration-500 hover:shadow-2xl hover:shadow-sky-100 flex flex-col"
               >
-                {/* Image Container */}
-                <div className="relative h-56 overflow-hidden bg-gradient-to-b from-sky-100 to-sky-50">
-                  <div 
-                    className="h-full w-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300" 
-                    style={{ backgroundImage: `url(${yarnImages[yarn.slug]})` }} 
+                {/* Image Section */}
+                <div className="relative h-64 overflow-hidden">
+                  <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-slate-900/0 transition-colors z-10"></div>
+                  <img 
+                    src={yarnImages[yarn.slug]} 
+                    alt={yarn.yarnType}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  {/* Badge */}
+                  <div className="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-slate-800 shadow-sm">
+                    PREMIUM GRADE
+                  </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold text-sky-900 mb-2">{yarn.yarnType}</h3>
-                  <p className="text-sky-700/80 mb-4 leading-relaxed text-sm flex-grow">
-                    Premium sizing product specifically formulated for {yarn.yarnType.toLowerCase()}.
+                {/* Content Section */}
+                <div className="p-8 flex flex-col flex-grow relative bg-white">
+                  
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2 group-hover:text-sky-600 transition-colors">
+                    {yarn.yarnType}
+                  </h3>
+                  <div className="h-1 w-12 bg-sky-500 rounded-full mb-4 group-hover:w-20 transition-all duration-300"></div>
+                  
+                  <p className="text-slate-500 text-sm mb-6 flex-grow">
+                    High-performance sizing compound specifically formulated for {yarn.yarnType.toLowerCase()} fibers, enhancing tensile strength.
                   </p>
-
-                  {/* Price Section */}
-                  <div className="border-t border-sky-100 pt-4 mb-4">
-                    <div className="flex items-baseline justify-between">
-                      <span className="text-gray-600 text-sm">Price per unit</span>
-                      <span className="text-3xl font-bold text-sky-600">₹{yarn.pricePerKg}</span>
+                  
+                  {/* Price Block */}
+                  <div className="flex items-end justify-between mb-8 pb-8 border-b border-slate-100">
+                    <div>
+                        <p className="text-xs text-slate-400 uppercase font-semibold mb-1">Market Price</p>
+                        <div className="flex items-baseline gap-1">
+                            <span className="text-3xl font-extrabold text-slate-900">₹{yarn.pricePerKg}</span>
+                            <span className="text-sm text-slate-500 font-medium">/kg</span>
+                        </div>
                     </div>
-                    <span className="text-xs text-gray-500">/kg</span>
                   </div>
+                  
+                  {/* Interaction Area */}
+                  <div className="space-y-4">
+                     {(quantities[yarn.slug] || 0) > 0 && (
+                        <div className="flex justify-between items-center bg-sky-50 px-4 py-3 rounded-xl border border-sky-100">
+                            <span className="text-sm font-semibold text-sky-800">Total:</span>
+                            <span className="text-lg font-bold text-sky-900">₹{(yarn.pricePerKg * quantities[yarn.slug]).toFixed(2)}</span>
+                        </div>
+                     )}
 
-                  {/* CTA Button */}
-                  <Link 
-                    to={`/products/sizing/${yarn.slug}`} 
-                    className="inline-flex items-center justify-center gap-2 bg-sky-600 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-sky-700 transition shadow-md text-sm w-full"
-                  >
-                    <span>View Details</span>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </Link>
+                     {(quantities[yarn.slug] || 0) === 0 ? (
+                        <button
+                          onClick={() => incrementQuantity(yarn.slug)}
+                          className="w-full py-4 rounded-xl bg-slate-900 text-white font-bold hover:bg-sky-600 transition-colors duration-300 flex items-center justify-center gap-2 group/btn"
+                        >
+                          <span>Start Order</span>
+                          <svg className="w-5 h-5 transform group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                        </button>
+                     ) : (
+                        <div className="flex flex-col gap-3 animate-in fade-in slide-in-from-bottom-2 duration-300">
+                            <div className="flex items-center justify-between bg-slate-100 rounded-xl p-1">
+                                <button
+                                    onClick={() => decrementQuantity(yarn.slug)}
+                                    className="w-12 h-12 flex items-center justify-center bg-white rounded-lg shadow-sm text-slate-600 hover:text-sky-600 transition-colors"
+                                >
+                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" /></svg>
+                                </button>
+                                <span className="text-xl font-bold text-slate-900">
+                                    {quantities[yarn.slug]} <span className="text-sm text-slate-500 font-normal">kg</span>
+                                </span>
+                                <button
+                                    onClick={() => incrementQuantity(yarn.slug)}
+                                    className="w-12 h-12 flex items-center justify-center bg-sky-600 rounded-lg shadow-md text-white hover:bg-sky-700 transition-colors"
+                                >
+                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+                                </button>
+                            </div>
+                            <Link 
+                                to="/booking"
+                                state={{ 
+                                    type: 'product',
+                                    category: 'sizing',
+                                    item: yarn.yarnType,
+                                    itemSlug: yarn.slug,
+                                    price: yarn.pricePerKg,
+                                    unit: 'kg',
+                                    quantity: quantities[yarn.slug]
+                                }}
+                                className="w-full py-4 rounded-xl bg-sky-600 text-white font-bold hover:bg-sky-500 transition-colors shadow-lg shadow-sky-200 text-center"
+                            >
+                                Proceed to Book
+                            </Link>
+                        </div>
+                     )}
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         )}
+      </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-8 text-center max-w-4xl mx-auto bg-gradient-to-r from-sky-600 to-sky-700 text-white rounded-2xl p-12 shadow-xl">
-          <h3 className="text-4xl font-bold mb-3">Ready to Order?</h3>
-          <p className="text-lg text-sky-100 mb-8">Book your sizing products today and experience superior yarn quality</p>
-          <Link 
-            to="/booking" 
-            className="inline-block bg-white text-sky-700 px-10 py-3.5 rounded-lg font-semibold hover:bg-sky-50 transition shadow-lg hover:shadow-xl"
-          >
-            Book Service Now
-          </Link>
-        </div>
+      {/* CTA Section */}
+      <div className="bg-slate-900 py-24 relative overflow-hidden">
+         <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+         <div className="container mx-auto px-4 relative z-10 text-center">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">Ready to Strengthen Your Production?</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto mb-12 text-lg">
+                Join hundreds of textile manufacturers who trust our sizing solutions for their premium yarn needs.
+            </p>
+            <Link 
+                to="/booking"
+                className="inline-flex items-center gap-3 px-10 py-5 bg-white text-slate-900 rounded-full font-bold text-lg hover:bg-sky-50 transition-all transform hover:scale-105 shadow-2xl"
+            >
+                Start a New Project
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+            </Link>
+         </div>
       </div>
     </div>
   );
 }
+

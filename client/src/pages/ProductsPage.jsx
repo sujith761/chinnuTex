@@ -12,7 +12,7 @@ export default function ProductsPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50">
+	<div className="min-h-screen bg-gradient-to-b from-primary-50 via-accent-light/40 to-white">
       {/* Hero Header */}
       <div className="relative overflow-hidden py-20 px-4">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-10"></div>

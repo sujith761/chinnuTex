@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import ChatBot from './components/ChatBot';
 import HomePage from './pages/HomePage';
 import ServicesPage from './pages/ServicesPage';
+import WeavingServicesPage from './pages/WeavingServicesPage';
 import ServiceDetailPage from './pages/ServiceDetailPage';
 import WhyChinnuTexPage from './pages/WhyJMBPage';
 import SavingsPage from './pages/SavingsPage';
@@ -13,7 +14,6 @@ import ProductsPage from './pages/ProductsPage';
 import SizingPage from './pages/SizingPage';
 import SizingDetailPage from './pages/SizingDetailPage';
 import WeavingPage from './pages/WeavingPage';
-import WeavingDetailPage from './pages/WeavingDetailPage';
 import AboutPage from './pages/AboutPage';
 import CareersPage from './pages/CareersPage';
 import ContactPage from './pages/ContactPage';
@@ -58,6 +58,7 @@ function AppContent() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/services" element={<ServicesPage />} />
+            <Route path="/services/weaving" element={<WeavingServicesPage />} />
             <Route path="/services/:slug" element={<ServiceDetailPage />} />
             <Route path="/why-chinnu-tex" element={<WhyChinnuTexPage />} />
             <Route path="/why-chinnu-tex/savings" element={<SavingsPage />} />
@@ -66,7 +67,6 @@ function AppContent() {
             <Route path="/products/sizing" element={<SizingPage />} />
             <Route path="/products/sizing/:yarnType" element={<SizingDetailPage />} />
             <Route path="/products/weaving" element={<WeavingPage />} />
-            <Route path="/products/weaving/:clothType" element={<WeavingDetailPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/careers" element={<CareersPage />} />
             <Route path="/contact" element={<ContactPage />} />
